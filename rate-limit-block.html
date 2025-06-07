@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>429 - Rate Limited | vexy.wtf</title>
+    <link rel="stylesheet" href="vexy-error-styles.css">
+</head>
+<body>
+    <div class="background-animation">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+        <div class="vexy-logo">
+            <div class="logo-v">V</div>
+            <span class="logo-text">vexy.wtf</span>
+        </div>
+        
+        <div class="error-code">429</div>
+        
+        <h1 class="error-title">Too Many Requests</h1>
+        
+        <p class="error-message">
+            You've exceeded the rate limit for requests. Please wait before trying again.
+        </p>
+
+        <div class="countdown" id="countdown">
+            Please wait <span id="timer">60</span> seconds before retrying
+        </div>
+        
+        <button class="retry-button disabled" id="retry-btn" onclick="window.location.reload()">
+            Try Again
+        </button>
+        
+        <div class="details">
+            <div class="detail-row">
+                <span class="status-indicator warning"></span>
+                <strong>Status:</strong> Rate Limited
+            </div>
+            <div class="detail-row">
+                <strong>Your IP:</strong> 
+                <span class="ip-address" id="ip-address" onclick="revealIP()" title="Click to reveal">
+                    ::CLIENT_IP::
+                </span>
+            </div>
+            <div class="detail-row">
+                <strong>Ray ID:</strong> <span id="ray-id">::RAY_ID::</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function revealIP() {
+            const ipElement = document.getElementById('ip-address');
+            ipElement.classList.add('revealed');
+        }
+
+        // Countdown timer
+        let timeLeft = 60;
+        const timerElement = document.getElementById('timer');
+        const retryButton = document.getElementById('retry-btn');
+        const countdownElement = document.getElementById('countdown');
+
+        const countdown = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = timeLeft;
+            
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                countdownElement.style.display = 'none';
+                retryButton.classList.remove('disabled');
+                retryButton.classList.add('enabled');
+                retryButton.textContent = 'Try Again';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

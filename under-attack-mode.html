@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>403 - Checking Your Browser | vexy.wtf</title>
+    <link rel="stylesheet" href="vexy-error-styles.css">
+</head>
+<body>
+    <div class="background-animation">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+        <div class="vexy-logo">
+            <div class="logo-v">V</div>
+            <span class="logo-text">vexy.wtf</span>
+        </div>
+        
+        <div class="error-code">403</div>
+        
+        <h1 class="error-title">Checking Your Browser</h1>
+        
+        <p class="error-message">
+            We're checking your browser to ensure the connection is secure. This process is automatic and should complete shortly.
+        </p>
+
+        <div class="cloudflare-box">
+            ::IM_UNDER_ATTACK_BOX::
+        </div>
+        
+        <div class="details">
+            <div class="detail-row">
+                <span class="status-indicator warning"></span>
+                <strong>Status:</strong> Security Check
+            </div>
+            <div class="detail-row">
+                <strong>Your IP:</strong> 
+                <span class="ip-address" id="ip-address" onclick="revealIP()" title="Click to reveal">
+                    ::CLIENT_IP::
+                </span>
+            </div>
+            <div class="detail-row">
+                <strong>Ray ID:</strong> <span id="ray-id">::RAY_ID::</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function revealIP() {
+            const ipElement = document.getElementById('ip-address');
+            ipElement.classList.add('revealed');
+        }
+    </script>
+</body>
+</html>
